@@ -1,0 +1,29 @@
+.d-flex {
+  display: flex;
+}
+
+.App {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.board {
+  background: rgb(88, 88, 88);
+  width: 500px;
+  height: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.square {
+  border: 1px solid #000;
+  color: #fff;
+  font-size: 32px;
+  place-items: center;
+  text-align: center;
+  display: grid;
+  cursor: pointer;
+}
