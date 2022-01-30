@@ -8,6 +8,7 @@ function App() {
   const [value, setValue] = useState(["", "", "", "", "", "", "", "", ""]);
   const [currentSquare, setCurSqr] = useState(-1);
   const [score, setScore] = useState({ X: 0, O: 0 });
+  const [winFlag, setWinFlag] = useState(false);
 
   const updateSquare = (index) => {
     if (value[index] == "") {
@@ -47,6 +48,7 @@ function App() {
     if (currentSquare >= 0) {
       let winFlag = isWinner(currentSquare);
       if (winFlag) {
+        // player wins
         setScore((prev) => {
           let temp = currentPlayer;
           currentPlayer == "X" ? (temp = "O") : (temp = "X");
@@ -54,9 +56,7 @@ function App() {
           return { ...prev, temp: ++prev[temp] };
         });
 
-        alert("won");
-        console.log(score);
-        console.log(currentPlayer);
+        setWinFlag(true);
       }
     }
   }, [currentSquare, value]);
@@ -81,11 +81,26 @@ function App() {
     setValue(["", "", "", "", "", "", "", "", ""]);
     setPlayer("X");
     setCurSqr(-1);
+    setWinFlag(false);
   };
 
+  const winMsg = (
+    <div className="win-msg">
+      <div>
+        <h3>Match Ended</h3>
+        <p>Player-{currentPlayer == "X" ? "O" : "X"} Has Won</p>
+        <p onClick={resetGame} className="new-game-btn">
+          New Game
+        </p>
+      </div>
+    </div>
+  );
   return (
     <div className="App">
-      <div className="board">{nineSquares}</div>
+      <div className="board">
+        {nineSquares}
+        {winFlag ? winMsg : ""}
+      </div>
       <div className="game-data">
         <h1>Tic Tac Toe</h1>
         <button onClick={resetGame} className="reset-btn">
