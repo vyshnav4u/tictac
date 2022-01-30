@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Square from "./componets/Square";
 import { useState, useEffect } from "react";
@@ -8,6 +7,7 @@ function App() {
   const [currentPlayer, setPlayer] = useState("X");
   const [value, setValue] = useState(["", "", "", "", "", "", "", "", ""]);
   const [currentSquare, setCurSqr] = useState(-1);
+  const [score, setScore] = useState({ X: 0, O: 0 });
 
   const updateSquare = (index) => {
     setValue(
@@ -28,6 +28,7 @@ function App() {
   };
 
   const isWinner = (currentIndex) => {
+    let returnFlag = false;
     pattern.forEach((singlePattern, index) => {
       if (singlePattern.includes(currentIndex)) {
         let tempIndex_0 = singlePattern[0];
@@ -38,90 +39,65 @@ function App() {
           value[tempIndex_0] == value[tempIndex_1] &&
           value[tempIndex_1] == value[tempIndex_2]
         ) {
-          console.log("finish");
-          return true;
+          // console.log("finish");
+          returnFlag = true;
         }
       }
     });
-    return false;
+    return returnFlag;
   };
 
   useEffect(() => {
     if (currentSquare >= 0) {
-      console.log("bie");
       let winFlag = isWinner(currentSquare);
-      console.log(winFlag);
       if (winFlag) {
+        setScore((prev) => {
+          let temp = currentPlayer;
+          currentPlayer == "X" ? (temp = "O") : (temp = "X");
+
+          return { ...prev, temp: ++prev[temp] };
+        });
+
         alert("won");
+        console.log(score);
+        console.log(currentPlayer);
       }
     }
   }, [currentSquare, value]);
 
+  const n = 9;
+
+  // Square boxex in board iterated 9 times
+  let nineSquares = [...Array(n)].map((elementInArray, i) => {
+    return (
+      <Square
+        key={i}
+        value={value[i]}
+        updateSquare={() => {
+          updateSquare(i);
+        }}
+      ></Square>
+    );
+  });
+
+  // reset game
+  const resetGame = () => {
+    setValue(["", "", "", "", "", "", "", "", ""]);
+    setPlayer("X");
+    setCurSqr(-1);
+  };
+
   return (
     <div className="App">
-      <div className="board">
-        <Square
-          value={value[0]}
-          updateSquare={() => {
-            updateSquare(0);
-          }}
-        ></Square>
-
-        <Square
-          value={value[1]}
-          updateSquare={() => {
-            updateSquare(1);
-          }}
-        ></Square>
-
-        <Square
-          value={value[2]}
-          updateSquare={() => {
-            updateSquare(2);
-          }}
-        ></Square>
-
-        <Square
-          value={value[3]}
-          updateSquare={() => {
-            updateSquare(3);
-          }}
-        ></Square>
-
-        <Square
-          value={value[4]}
-          updateSquare={() => {
-            updateSquare(4);
-          }}
-        ></Square>
-
-        <Square
-          value={value[5]}
-          updateSquare={() => {
-            updateSquare(5);
-          }}
-        ></Square>
-
-        <Square
-          value={value[6]}
-          updateSquare={() => {
-            updateSquare(6);
-          }}
-        ></Square>
-
-        <Square
-          value={value[7]}
-          updateSquare={() => {
-            updateSquare(7);
-          }}
-        ></Square>
-
-        <Square
-          value={value[8]}
-          updateSquare={() => {
-            updateSquare(8);
-          }}
-        ></Square>
+      <div className="board">{nineSquares}</div>
+      <div className="game-data">
+        <h1>Tic Tac Toe</h1>
+        <button onClick={resetGame} className="reset-btn">
+          Reset
+        </button>
+        <h2>Score Board</h2>
+        <h3> Player-X: {score.X} </h3>
+        <h3> Player-O: {score.O} </h3>
       </div>
     </div>
   );

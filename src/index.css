@@ -3,8 +3,8 @@
 }
 
 .App {
-  display: flex;
-  width: 100vw;
+  display: grid;
+  grid-template-columns: auto 50%;
   min-height: 100vh;
   align-items: center;
   justify-content: center;
@@ -12,8 +12,7 @@
 
 .board {
   background: rgb(88, 88, 88);
-  width: 500px;
-  height: 500px;
+
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
@@ -26,4 +25,6 @@
   text-align: center;
   display: grid;
   cursor: pointer;
+  height: 150px;
+  width: 150px;
 }
