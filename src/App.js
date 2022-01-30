@@ -10,21 +10,17 @@ function App() {
   const [score, setScore] = useState({ X: 0, O: 0 });
 
   const updateSquare = (index) => {
-    setValue(
-      value.map((elem, i) => {
-        if (i == index && elem == "") {
-          let temp = currentPlayer;
-          setCurSqr(index);
-          if (currentPlayer === "X") {
-            setPlayer("O");
-          } else {
-            setPlayer("X");
-          }
-          return temp;
-        }
-        return elem;
-      })
-    );
+    if (value[index] == "") {
+      value[index] = currentPlayer;
+      setValue(value);
+
+      setCurSqr(index);
+      if (currentPlayer === "X") {
+        setPlayer("O");
+      } else {
+        setPlayer("X");
+      }
+    }
   };
 
   const isWinner = (currentIndex) => {
