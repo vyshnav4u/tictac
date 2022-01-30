@@ -1,8 +1,8 @@
 {
-  "homepage": "https://vyshnav4u/github.io/react-tic-tac-toe",
-  "name": "react-tic-tac-toe",
+  "name": "tictac",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://vyshnav4u/github.io/tictac",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
