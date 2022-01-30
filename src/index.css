@@ -19,7 +19,7 @@
 
 .square {
   border: 1px solid #000;
-  color: #fff;
+  color: rgb(243, 235, 235);
   font-size: 32px;
   place-items: center;
   text-align: center;
