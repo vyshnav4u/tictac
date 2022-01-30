@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/github.io/tictac/static/css/main.1a6dad1f.css",
+    "main.js": "/github.io/tictac/static/js/main.2c90c387.js",
+    "static/js/787.cd12e02b.chunk.js": "/github.io/tictac/static/js/787.cd12e02b.chunk.js",
+    "index.html": "/github.io/tictac/index.html",
+    "main.1a6dad1f.css.map": "/github.io/tictac/static/css/main.1a6dad1f.css.map",
+    "main.2c90c387.js.map": "/github.io/tictac/static/js/main.2c90c387.js.map",
+    "787.cd12e02b.chunk.js.map": "/github.io/tictac/static/js/787.cd12e02b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1a6dad1f.css",
+    "static/js/main.2c90c387.js"
+  ]
+}
